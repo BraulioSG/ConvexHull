@@ -5,10 +5,10 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-window.onresize = () => {
+window.onresize = (evt) => {
+    console.log("hello")
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
 }
 
 const POINTS_PER_GROUP = 5;
@@ -45,7 +45,7 @@ btn.onclick = () => {
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     points.flat().forEach(point => {
-        if (playing) point.update(canvas);
+        if (playing) point.update(canvas.width, canvas.height);
         point.draw();
     })
 

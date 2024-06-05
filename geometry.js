@@ -20,25 +20,27 @@ class Point2D {
         this.ctx.fill();
 
     }
-    update(canvas) {
+    update(width, height) {
         this.x += this.vx;
         this.y += this.vy;
 
         if (this.x < 0) {
             this.x = 1;
-            this.vx = -this.vx;
+            this.vx = Math.abs(this.vx);
         }
         if (this.y < 0) {
             this.y = 1;
-            this.vy = -this.vy;
+            this.vy = Math.abs(this.vy);
         }
-        if (this.x > canvas.width) {
-            this.x = canvas.width - 1;
-            this.vx = -this.vx;
+        if (this.x > width) {
+            this.x = width - 1;
+            this.vx = -Math.abs(this.vx);
+
         }
-        if (this.y > canvas.height) {
-            this.y = canvas.height - 1;
-            this.vy = - this.vy;
+        if (this.y > height) {
+            this.y = height - 1;
+            this.vy = -Math.abs(this.vy);
+
         }
     }
 
@@ -244,9 +246,19 @@ class ConvexHull {
 
             const angBase = curr.value.angleFrom(curr.prev.value);
 
+            points = points.filter(p => {
+                if (this.Hull.find(p) === null) {
+                    return true;
+                }
+                return p.id === this.Hull.root.value.id;
+            })
+
 
             points.forEach(p => {
+                if (p.id !== this.Hull.root.id) {
+                }
                 if (p.id === curr.prev.value.id) return;
+
                 const pointAngle = curr.value.angleFrom(p);
                 let ang = (pointAngle - angBase);
 
@@ -274,6 +286,7 @@ class ConvexHull {
                 }
 
             })
+
 
             if (nextP.id === this.Hull.root.value.id) {
                 break;
@@ -317,30 +330,6 @@ class ConvexHull {
         this.Hull.append(minX);
         this.Hull.append(maxY);
         this.Hull.append(maxX);
-
-        //drawing main 4
-        let current = this.Hull.root;
-
-        const color = "magenta";
-
-        let point = current.value;
-
-        //this.center.draw();
-
-        this.ctx.beginPath();
-        this.ctx.strokeStyle = color;
-        this.ctx.moveTo(point.x, point.y);
-
-        while (current) {
-            point = current.value;
-            this.ctx.lineTo(point.x, point.y);
-            current = current.next;
-        }
-
-        this.ctx.lineTo(this.Hull.root.value.x, this.Hull.root.value.y);
-
-        this.ctx.stroke();
-        ///
 
 
         //center
