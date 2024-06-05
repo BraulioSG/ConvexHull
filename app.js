@@ -11,7 +11,7 @@ window.onresize = (evt) => {
     canvas.height = window.innerHeight;
 }
 
-const POINTS_PER_GROUP = 5;
+const POINTS_PER_GROUP = 10;
 
 const colors = [
     "#ef476f",
