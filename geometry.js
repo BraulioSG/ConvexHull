@@ -7,8 +7,8 @@ class Point2D {
         this.color = color;
         this.size = size;
 
-        this.vx = Math.random() * 2 - 1;
-        this.vy = Math.random() * 2 - 1;
+        this.vx = (Math.random() * 2 - 1) * 0.5;
+        this.vy = (Math.random() * 2 - 1) * 0.5;
 
         this.id = `${color}-${Math.round(Math.random() * 100000)}-${x}-${y}`
     }

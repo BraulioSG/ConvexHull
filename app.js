@@ -11,7 +11,7 @@ window.onresize = () => {
 
 }
 
-const POINTS_PER_GROUP = 4;
+const POINTS_PER_GROUP = 5;
 
 const colors = [
     "#ef476f",
@@ -35,8 +35,8 @@ colors.forEach(color => {
     hulls.push(new ConvexHull(ctx, colorGroup, color))
 })
 
-hulls.push(new ConvexHull(ctx, points.flat(), "magenta"));
-let playing = false;
+hulls.push(new ConvexHull(ctx, points.flat(), "white"));
+let playing = true;
 btn.onclick = () => {
     playing = !playing
 }
