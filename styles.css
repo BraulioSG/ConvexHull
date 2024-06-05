@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+body {
+    background-color: #ffe5d9;
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+#play {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+}
